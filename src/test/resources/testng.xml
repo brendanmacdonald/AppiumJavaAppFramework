@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Device Tests">
+    <test name="App Tests">
+        <classes>
+            <class name="Tests.ContactManagerTest" />
+        </classes>
+    </test>
+</suite>
+
