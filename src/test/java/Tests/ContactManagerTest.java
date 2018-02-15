@@ -31,8 +31,5 @@ public class ContactManagerTest extends TestBase {
         for(WebElement entry : contactListEntries) {
             System.out.println(entry.getText());
         }
-
     }
-
-
 }

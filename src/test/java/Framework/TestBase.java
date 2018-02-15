@@ -3,8 +3,9 @@ package Framework;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.openqa.selenium.remote.CapabilityType;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
 import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
@@ -15,7 +16,7 @@ public class TestBase {
 
     @BeforeMethod
     @Parameters({"localTest", "serverURL", "deviceName", "platformName", "platformVersion", "testobject_api_key", "appLocation"})
-    public void setUpAppium(String localTest,
+    public void setUpDeviceDriver( String localTest,
                             String serverURL,
                             String deviceName,
                             String platformName,
@@ -31,21 +32,22 @@ public class TestBase {
         capabilities.setCapability(MobileCapabilityType.PLATFORM, platformName);
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
         capabilities.setCapability(MobileCapabilityType.APP, appLocation);
-        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 5000);
+        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 10);
 
         // Only required to launch local emulators.
         if (Boolean.parseBoolean(localTest) ) {
             capabilities.setCapability("avd", deviceName);
         }
-
-        // Only relevant when running tests remotely on https://testobject.com/.
-        capabilities.setCapability("testobject_api_key", testobject_api_key);
+        else {
+            // Only relevant when running tests remotely on https://testobject.com/.
+            capabilities.setCapability("testobject_api_key", testobject_api_key);
+        }
 
         // Initialize the driver.
         App.driver = new AndroidDriver<MobileElement>(url, capabilities);
 
         // Implicit timeout.
-        App.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        App.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterSuite
