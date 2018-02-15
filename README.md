@@ -10,6 +10,13 @@ All of the tests run in an app, and perform some basic tests.
 4. Install NodeJS.
 5. Get the sample ContactManager.apk from here: https://github.com/appium/sample-apps/tree/master/pre-built.
 
+## Update testng.xml configuration
+Update the resources/testng.xml file to match the names and platforms of your emulators/devices.
+* parameter name="deviceName" value="_**Nexus_6_API_26**_"
+* parameter name="platform" value="_**Android**_"
+
+Here you can also update the TestObject (https://testobject.com) settings if you want to run the tests remotely.
+
 ## Execution
 1. Start Appium Server:
 ```
@@ -17,7 +24,7 @@ appium
 ```
 2. Execute the tests:
 ```
-mvn test -DdeviceName=Nexus_5X_API_26 -Dplatform=Android -DappLocation="<your local path to the .apk file>ContactManager.apk"
+mvn test -DappLocation="<your local path to the .apk file>ContactManager.apk"
 ```
 3. To run on a physical device, execute the following to get a connected device name, and substitute it in point 2 above:
 ```

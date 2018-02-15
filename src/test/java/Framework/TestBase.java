@@ -13,20 +13,33 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-    @BeforeSuite
-    @Parameters({"deviceName", "platform", "appLocation"})
-    public void setUpAppium(String deviceName, String platform, String appLocation) throws MalformedURLException {
+    @BeforeMethod
+    @Parameters({"localTest", "serverURL", "deviceName", "platformName", "platformVersion", "testobject_api_key", "appLocation"})
+    public void setUpAppium(String localTest,
+                            String serverURL,
+                            String deviceName,
+                            String platformName,
+                            String platformVersion,
+                            String testobject_api_key,
+                            String appLocation) throws MalformedURLException {
 
-        // Define the URL for the Appium server.
-        final String URL_STRING = "http://127.0.0.1:4723/wd/hub";
-        URL url = new URL(URL_STRING);
+        // Define the URL for the Appium or TestObject server.
+        URL url = new URL(serverURL);
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.PLATFORM, platform);
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
+        capabilities.setCapability(MobileCapabilityType.PLATFORM, platformName);
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
         capabilities.setCapability(MobileCapabilityType.APP, appLocation);
-        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "5000");
-        capabilities.setCapability("avd", deviceName);
+        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 5000);
+
+        // Only required to launch local emulators.
+        if (Boolean.parseBoolean(localTest) ) {
+            capabilities.setCapability("avd", deviceName);
+        }
+
+        // Only relevant when running tests remotely on https://testobject.com/.
+        capabilities.setCapability("testobject_api_key", testobject_api_key);
 
         // Initialize the driver.
         App.driver = new AndroidDriver<MobileElement>(url, capabilities);
@@ -35,7 +48,6 @@ public class TestBase {
         App.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
-
     @AfterSuite
     public void tearDownAppium() {
         App.driver.quit();
@@ -43,6 +55,6 @@ public class TestBase {
 
     @AfterTest
     public void restartApp() {
-         //App.driver.resetApp();
+        //App.driver.resetApp();
     }
 }
