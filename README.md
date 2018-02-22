@@ -18,13 +18,13 @@ Update the resources/testng.xml file to match the names and platforms of your em
 Here you can also update the TestObject (https://testobject.com) settings if you want to run the tests remotely.
 
 ## Execution
-1. Start Appium Server:
+1. Start Appium Server (not required for TestObject / Saucelabs):
 ```
 appium
 ```
 2. Execute the tests:
 ```
-mvn test -DappLocation="<your local path to the .apk file>ContactManager.apk"
+mvn test
 ```
 3. To run on a physical device, execute the following to get a connected device name, and substitute it in point 2 above:
 ```

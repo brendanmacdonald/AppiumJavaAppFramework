@@ -8,6 +8,14 @@
     <artifactId>AppiumJavaFrameworkExample</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <repositories>
+        <repository>
+            <id>genymotion</id>
+            <name>Genymotion repo</name>
+            <url>http://api.genymotion.com/repositories/releases/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>io.appium</groupId>
@@ -18,6 +26,11 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.11</version>
+        </dependency>
+        <dependency>
+            <groupId>com.genymotion.api</groupId>
+            <artifactId>genymotion-api</artifactId>
+            <version>1.0.4</version>
         </dependency>
     </dependencies>
 

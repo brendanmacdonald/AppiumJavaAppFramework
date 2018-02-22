@@ -2,47 +2,68 @@
 
 <suite name="Device Tests">
 
+    <!--VARIOUS SETTINGS FOR RUNNING TESTS LOCALLY / VM / CLOUD-->
+
+
     <!--General parameters used across multiple tests-->
     <parameter name="localTest" value="false" />
-    <parameter name="testobject_api_key" value="0C075C06DFB84F879FF10DF686D0A20C" />
-    <parameter name="appLocation" value="C:\Users\bmacdonald\Documents\Learning\sample-apps\pre-built\ContactManager.apk" />
+    <parameter name="testobject_api_key" value="0C075C06NOTREALDFB84F879FF0A20C" />
+    <!--<parameter name="appLocation" value="C:\Users\Username\Documents\Learning\sample-apps\pre-built\ContactManager.apk" />-->
+    <parameter name="appLocation" value="/home/Username/Downloads/sample-code-master/sample-code/apps/ContactManager/ContactManager.apk" />  <!--VM location of app-->
     <parameter name="name" value="Bob Smith" />
     <parameter name="phone" value="01225 851478" />
     <parameter name="email" value="Bob.Smith@gmail.com" />
 
-    <!--Test specific paramteres-->
-    <test name="Local Tests">
-        <parameter name="localTest" value="true" />
-        <parameter name="serverURL" value="http://127.0.0.1:4723/wd/hub" />
-        <parameter name="deviceName" value="Nexus_6_API_26" />
-        <parameter name="platformName" value="Android" />
-        <parameter name="platformVersion" value="6.0" />
+    <!--<test name="GENYMOTION">-->
+        <!--<parameter name="serverURL" value="http://127.0.0.1:4723/wd/hub" />-->
+        <!--<parameter name="deviceName" value="192.168.120.101:5555" /> Genymotion device, no 'localTest' flag required -->
+        <!--<parameter name="platformName" value="Android" />-->
+        <!--<parameter name="platformVersion" value="7.0" />-->
+        <!--<classes>-->
+            <!--<class name="Tests.ContactManagerTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="LOCAL">-->
+        <!--<parameter name="localTest" value="true" />-->
+        <!--<parameter name="serverURL" value="http://127.0.0.1:4723/wd/hub" />-->
+        <!--<parameter name="deviceName" value="Nexus_5X_API_26" />-->
+        <!--<parameter name="platformName" value="Android" />-->
+        <!--<parameter name="platformVersion" value="7.0" />-->
+        <!--<classes>-->
+            <!--<class name="Tests.ContactManagerTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="VIRTUALBOX VM with physical device connected">-->
+        <!--<parameter name="serverURL" value="http://192.168.194.1:8080/wd/hub" />  VM Host Network URL-->
+        <!--<parameter name="deviceName" value="01157df80c" />-->
+        <!--<parameter name="platformName" value="Android" />-->
+        <!--<parameter name="platformVersion" value="7.0" />-->
+        <!--<classes>-->
+            <!--<class name="Tests.ContactManagerTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="TESTOBJECT">-->
+        <!--<parameter name="serverURL" value="https://eu1.appium.testobject.com/wd/hub" />-->
+        <!--<parameter name="deviceName" value="LG Nexus 5X Free" />-->
+        <!--<parameter name="platformName" value="Android" />-->
+        <!--<parameter name="platformVersion" value="8.1" />-->
+        <!--<classes>-->
+            <!--<class name="Tests.ContactManagerTest" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <test name="SAUCELABS">
+        <parameter name="testobject_api_key" value="107D3NOTREALB1FB956DAB" />
+        <parameter name="serverURL" value="http://Username:ApiKey@ondemand.saucelabs.com:80/wd/hub"/>
+        <parameter name="deviceName" value="Samsung Galaxy S8 GoogleAPI Emulator"/>
+        <parameter name="platformName" value="Android"/>
+        <parameter name="platformVersion" value="7.1"/>
         <classes>
-            <class name="Tests.ContactManagerTest" />
+            <class name="Tests.ContactManagerTest"/>
         </classes>
     </test>
-
-    <test name="Local Tests2">
-        <parameter name="localTest" value="true" />
-        <parameter name="serverURL" value="http://127.0.0.1:4723/wd/hub" />
-        <parameter name="deviceName" value="Nexus_5X_API_26" />
-        <parameter name="platformName" value="Android" />
-        <parameter name="platformVersion" value="6.0" />
-        <classes>
-            <class name="Tests.ContactManagerTest" />
-        </classes>
-    </test>
-
-    <!--Uncomment to run the test remotely on https://testobject.com-->
-    <test name="TestObject Tests">
-        <parameter name="serverURL" value="https://eu1.appium.testobject.com/wd/hub" />
-        <parameter name="deviceName" value="LG Nexus 5X Free" />
-        <parameter name="platformName" value="Android" />
-        <parameter name="platformVersion" value="8.1" />
-        <classes>
-            <class name="Tests.ContactManagerTest" />
-        </classes>
-    </test>
-
 </suite>
 
