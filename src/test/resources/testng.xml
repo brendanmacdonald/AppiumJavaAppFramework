@@ -1,39 +1,52 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Device Tests">
+<suite name="Device Tests" parallel="tests" thread-count="5">
 
     <!--VARIOUS SETTINGS FOR RUNNING TESTS LOCALLY / VM / CLOUD-->
+    <!--#######################################################-->
 
 
     <!--General parameters used across multiple tests-->
     <parameter name="localTest" value="false" />
     <parameter name="testobject_api_key" value="0C075C06NOTREALDFB84F879FF0A20C" />
-    <!--<parameter name="appLocation" value="C:\Users\Username\Documents\Learning\sample-apps\pre-built\ContactManager.apk" />-->
-    <parameter name="appLocation" value="/home/Username/Downloads/sample-code-master/sample-code/apps/ContactManager/ContactManager.apk" />  <!--VM location of app-->
+    <parameter name="appLocation" value="C:\Users\bmacdonald\Documents\Learning\sample-apps-master\pre-built\ContactManager.apk" />
+    <!--<parameter name="appLocation" value="/home/Username/Downloads/sample-code-master/sample-code/apps/ContactManager/ContactManager.apk" />  &lt;!&ndash;VM location of app&ndash;&gt;-->
     <parameter name="name" value="Bob Smith" />
     <parameter name="phone" value="01225 851478" />
     <parameter name="email" value="Bob.Smith@gmail.com" />
 
-    <!--<test name="GENYMOTION">-->
-        <!--<parameter name="serverURL" value="http://127.0.0.1:4723/wd/hub" />-->
-        <!--<parameter name="deviceName" value="192.168.120.101:5555" /> Genymotion device, no 'localTest' flag required -->
-        <!--<parameter name="platformName" value="Android" />-->
-        <!--<parameter name="platformVersion" value="7.0" />-->
-        <!--<classes>-->
-            <!--<class name="Tests.ContactManagerTest" />-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="ANDROID EMULATOR">
+        <parameter name="localTest" value="true" />
+        <parameter name="serverURL" value="http://127.0.0.1:4723/wd/hub" />
+        <parameter name="deviceName" value="Nexus_5X_API_24" />
+        <parameter name="platformName" value="Android" />
+        <parameter name="platformVersion" value="7.0" />
+        <classes>
+            <class name="Tests.ContactManagerTest" />
+        </classes>
+    </test>
 
-    <!--<test name="LOCAL">-->
-        <!--<parameter name="localTest" value="true" />-->
-        <!--<parameter name="serverURL" value="http://127.0.0.1:4723/wd/hub" />-->
-        <!--<parameter name="deviceName" value="Nexus_5X_API_26" />-->
-        <!--<parameter name="platformName" value="Android" />-->
-        <!--<parameter name="platformVersion" value="7.0" />-->
-        <!--<classes>-->
-            <!--<class name="Tests.ContactManagerTest" />-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="ANDROID EMULATOR 2">
+        <parameter name="localTest" value="true" />
+        <parameter name="serverURL" value="http://127.0.0.1:4723/wd/hub" />
+        <parameter name="deviceName" value="Pixel_2_API_23" />
+        <parameter name="platformName" value="Android" />
+        <parameter name="platformVersion" value="7.0" />
+        <classes>
+            <class name="Tests.ContactManagerTest" />
+        </classes>
+    </test>
+
+    <test name="PHYSICAL DEVICE">
+        <parameter name="localTest" value="false" />
+        <parameter name="serverURL" value="http://127.0.0.1:4723/wd/hub" />
+        <parameter name="deviceName" value="01157df1d04cb80c" />
+        <parameter name="platformName" value="Android" />
+        <parameter name="platformVersion" value="7.0" />
+        <classes>
+            <class name="Tests.ContactManagerTest" />
+        </classes>
+    </test>
 
     <!--<test name="VIRTUALBOX VM with physical device connected">-->
         <!--<parameter name="serverURL" value="http://192.168.194.1:8080/wd/hub" />  VM Host Network URL-->
@@ -55,15 +68,25 @@
         <!--</classes>-->
     <!--</test>-->
 
-    <test name="SAUCELABS">
-        <parameter name="testobject_api_key" value="107D3NOTREALB1FB956DAB" />
-        <parameter name="serverURL" value="http://Username:ApiKey@ondemand.saucelabs.com:80/wd/hub"/>
-        <parameter name="deviceName" value="Samsung Galaxy S8 GoogleAPI Emulator"/>
-        <parameter name="platformName" value="Android"/>
-        <parameter name="platformVersion" value="7.1"/>
-        <classes>
-            <class name="Tests.ContactManagerTest"/>
-        </classes>
-    </test>
+    <!--<test name="SAUCELABS">-->
+        <!--<parameter name="testobject_api_key" value="107D3NOTREALB1FB956DAB" />-->
+        <!--<parameter name="serverURL" value="http://Username:ApiKey@ondemand.saucelabs.com:80/wd/hub"/>-->
+        <!--<parameter name="deviceName" value="Samsung Galaxy S8 GoogleAPI Emulator"/>-->
+        <!--<parameter name="platformName" value="Android"/>-->
+        <!--<parameter name="platformVersion" value="7.1"/>-->
+        <!--<classes>-->
+            <!--<class name="Tests.ContactManagerTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="GENYMOTION">-->
+    <!--<parameter name="serverURL" value="http://127.0.0.1:4723/wd/hub" />-->
+    <!--<parameter name="deviceName" value="192.168.120.101:5555" /> Genymotion device, no 'localTest' flag required -->
+    <!--<parameter name="platformName" value="Android" />-->
+    <!--<parameter name="platformVersion" value="7.0" />-->
+    <!--<classes>-->
+    <!--<class name="Tests.ContactManagerTest" />-->
+    <!--</classes>-->
+    <!--</test>-->
 </suite>
 
